@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <title>Certificado</title>
+    <style>
+        body {
+            margin: 0%;
+            padding: 0%;
+            background: rgb(9, 9, 121);
+            background: linear-gradient(313deg,
+                    rgba(9, 9, 121, 1) 34%,
+                    rgba(42, 250, 209, 1) 100%);
+        }
+
+        #featuresListContainer {
+
+            display: flexbox;
+            width: 100%;
+            text-align: center;
+
+        }
+
+        .box {
+            display: inline-block;
+            height: 30px;
+            width: 230px;
+            background-color: #f0f0f0;
+            margin: 1px;
+
+            font-size: small;
+            text-align: left;
+            padding: 2px;
+            line-height: 25px;
+
+
+        }
+
+        .container {
+            width: 900px;
+            border: 3px, solid, rgb(0, 255, 55);
+            margin: auto;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            /* Bordes redondeados */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Sombra elegante */
+            border: 1px solid #ddd;
+            /* Borde fino para definición */
+            background-color: #fff;
+            /* Fondo blanco para contraste */
+        }
+
+        .fixed-buttons {
+            position: fixed;
+            top: 80px;
+            right: 80px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+            /* Asegura que los botones estén al frente */
+            width: 200px;
+            /* Ancho fijo para ambos botones */
+        }
+
+        .fixed-buttons button {
+            width: 100%;
+            /* Hace que ambos botones ocupen el ancho completo del contenedor */
+        }
+
+        .logo {
+            text-align: center;
+        }
+
+        .folio p {
+            margin-top: 3px;
+            text-align: left;
+        }
+
+        .contenido {
+            width: 100%;
+            margin-top: 25px;
+            text-align: justify;
+        }
+
+        .QR {
+            display: flex;
+            margin-top: 30px;
+            justify-content: center;
+        }
+
+        .firmas {
+            width: 80%;
+            display: flex;
+            margin: auto;
+            margin-top: 20px;
+            margin-bottom: 40px;
+            justify-content: space-between;
+        }
+
+        .conf .form-check-input {
+            transform: scale(1.5);
+            /* Ajusta el valor para cambiar el tamaño */
+            margin-right: 5px;
+            color: red;
+        }
+
+        @media print {
+            .fixed-buttons {
+                display: none;
+            }
+
+        }
+
+        .fa-map-marker-alt {
+            color: rgb(2, 145, 2);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="folio mt-3">
+            <p>Folio:<b> 010203</b></p>
+        </div>
+        <div class="logo mt-5">
+            <img src="./asset/Captura.JPG" alt="" />
+            <h1>CERTIFICADO</h1>
+        </div>
+        <div class="contenido">
+            <p style="text-align: center">
+                Servicios de Implementación y tecnologías de la información y
+                comunicación
+            </p>
+            <p>
+                Con fecha <b id="date">01/01/2023</b>, la empresa proveedora de
+                productos y servicios <b>WIT SPA</b> <b>RUT 77.122.368-K</b> certifica
+                que el vehículo patente <b id="patente">“RFKK-86”</b> perteneciente a
+                la empresa <b id="razon">TRANSPORTES TANDEM</b> RUT <b id="rut">99.593.350-K</b>, consta
+                de un equipamiento con la siguiente identificación:
+            </p>
+
+            <h4>Tabla de Productos/Servicios</h4>
+            <table class="table table-bordered mt-5">
+                <thead>
+                    <tr>
+                        <th scope="col">GPS</th>
+                        <th scope="col">IMEI</th>
+                        <th scope="col">No Cert-QA</th>
+                        <th scope="col">Ultima lectura</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>MasGPS</td>
+                        <td id="imei">31G1812561067</td>
+                        <td id="verify">Insertar número de certificación aquí</td>
+                        <td><i class="fas fa-map-marker-alt"></i><a href="" id="lpf">link </a></td>
+                    </tr>
+                    <!-- Puedes agregar más filas según sea necesario -->
+                </tbody>
+            </table>
+
+            <div id="featuresListContainer">
+
+            </div>
+
+            <hr />
+            <div class="texto">
+                <p>
+                    Homologado y certificado bajo las normas de uso para equipos
+                    electrónicos y de telecomunicaciones FCC.
+                </p>
+                <p>
+                    Los dispositivos se encuentran instalados en los vehículos de la
+                    empresa, conectados a un servicio de comunicaciones, plataformas de
+                    monitoreo, control, mesa de ayuda, estadística y administración.
+                </p>
+                <p>
+                    El presente certificado se extiende para los fines de presentación
+                    que requiera la empresa, con fecha de expiración el
+                    <b id="fechaVencimiento">31/12/2024</b>.
+                </p>
+            </div>
+            <div class="QR">
+                <div id="qrCode"></div>
+            </div>
+            <div class="firmas">
+                <img src="./asset/euro.JPG" alt="" />
+                <img src="./asset/isra.JPG" alt="" />
+            </div>
+
+            <div class="footer">
+                <p>
+                    <b>WIT</b> – Innovación Tecnológica, Obispo Umaña 633, RM, Santiago
+                    de Chile.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="fixed-buttons">
+        <button onclick="window.print()" class="btn btn-primary mr-2">
+            Imprimir
+        </button>
+        <button onclick="enviarCorreo()" class="btn btn-secondary">
+            Enviar por correo
+        </button>
+        <button onclick="descargarPDF()" class="btn btn-success">Descargar PDF</button>
+    </div>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script>
+        $(document).ready(function () {
+            const datosGuardados = localStorage.getItem('vehiculoDatos');
+            const datosVehiculo = JSON.parse(datosGuardados);
+            var verify = generarClaveAleatoria(10);
+            const codigo = verify;
+            const patente = datosVehiculo.patente;
+
+            verify = verify + '/' + patente;
+            console.log(verify);
+            // Función para generar el código QR
+            function generarQR(verify) {
+                var qr = new QRCode(document.getElementById("qrCode"), {
+                    text: verify,
+                    width: 200,
+                    height: 200,
+                });
+            }
+
+            // Llamada a la función para generar el código QR
+            generarQR(verify); // Puedes cambiar "https://ejemplo.com" por la URL que desees codificar en el QR
+
+            // Obtener la fecha actual
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, "0");
+            var mm = String(today.getMonth() + 1).padStart(2, "0"); // Enero es 0!
+            var yyyy = today.getFullYear();
+
+            today = dd + "/" + mm + "/" + yyyy;
+
+            // Actualizar el contenido del elemento con id "date"
+            $("#date").text(today);
+            // Obtener la información del localStorage
+            // Añadir un año a la fecha actual
+            var nextYear = new Date(yyyy + 1, mm - 1, dd); // Restar 1 al mes ya que en JavaScript los meses van de 0 a 11
+            var ddNextYear = String(nextYear.getDate()).padStart(2, "0");
+            var mmNextYear = String(nextYear.getMonth() + 1).padStart(2, "0");
+            var yyyyNextYear = nextYear.getFullYear();
+
+            var fechaVencimiento =
+                ddNextYear + "/" + mmNextYear + "/" + yyyyNextYear;
+
+            $("#fechaVencimiento").text(fechaVencimiento);
+
+            //var patente = localStorage.getItem("patente");
+            //  var vehiculoDatos=localStorage.getItem("vehiculoDatos");
+
+            // const patente = datosVehiculo.patente;
+            const rut = datosVehiculo.RUT;
+            const razonSocial = datosVehiculo.Razon_Social;
+            const lat = datosVehiculo.lat;
+            const lng = datosVehiculo.long;
+            const coord = lat + ',' + lng;
+            const urlmap = 'http://localhost/certificado/mapa.html';
+            //$("#lpf").attr("href", urlmap, "_blank");
+            $("#lpf").click(function () {
+                window.open(urlmap, "_blank");
+            });
+
+            console.log(coord);
+
+
+            // Recupera los datos de 'featuresSelected' de localStorage
+            let featuresSelected = JSON.parse(localStorage.getItem('featuresSelected'));
+
+            // let featuresSelected = arr;
+
+            // Selecciona el contenedor de la lista
+            let featuresList = $('#featuresListContainer');
+
+            // Verifica si existen características seleccionadas
+            if (featuresSelected && featuresSelected.length > 0) {
+                // Recorre cada característica y la añade a la lista
+                featuresSelected.forEach(function (feature) {
+                    let listItem = $('<div></div>').addClass('box');
+
+                    listItem.append('  <i class="fas fa-check-circle text-success">   </i>');
+                    listItem.append(feature);
+                    featuresList.append(listItem);
+                });
+            } else {
+                // Si no hay características guardadas, muestra un mensaje
+                featuresList.append('<li class="list-group-item text-muted">No hay características seleccionadas.</li>');
+            }
+
+
+
+            // Verificar si la información existe en el localStorage
+            if (patente) {
+                // Mostrar la información en el elemento con id "patente"
+                $("#patente").text(patente);
+                $("#verify").text(codigo);
+                $("#imei").text(datosVehiculo.imei);
+                $("#lpf").html(datosVehiculo.last_update);
+                $("#rut").text(rut);
+                $("#razon").text(razonSocial);
+            }
+
+            function generarClaveAleatoria(longitud) {
+                var caracteres =
+                    "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                var clave = "";
+
+                for (var i = 0; i < longitud; i++) {
+                    var indice = Math.floor(Math.random() * caracteres.length);
+                    clave += caracteres.charAt(indice);
+                }
+
+                return clave;
+            }
+        });
+        function enviarCorreo() {
+            const subject = encodeURIComponent("Certificado");
+            const body = encodeURIComponent("Aquí tienes el certificado solicitado.");
+            window.location.href = `mailto:?subject=${subject}&body=${body}`;
+        }
+        function descargarPDF() {
+            // Selecciona el contenido que deseas convertir en PDF
+            const element = document.querySelector('.container');
+
+            // Estilo temporal para ajustar el ancho al formato A4
+            element.style.width = '800px';
+
+            // Opciones de PDF
+            const opciones = {
+                margin: 50, // Margen reducido
+                filename: 'certificado.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 1, width: 1600 }, // Ajusta la escala
+                jsPDF: { unit: 'px', format: 'a4', orientation: 'portrait' }
+            };
+
+            // Genera y descarga el PDF
+            html2pdf().set(opciones).from(element).save()
+                .then(() => {
+                    // Restablece el estilo original del ancho
+                    element.style.width = '800px';
+                });
+        }
+    </script>
+</body>
+
+</html>

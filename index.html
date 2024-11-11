@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Consulta de Vehículo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <style>
+    body {
+      margin: 0%;
+      padding: 0%;
+      background: rgb(9, 9, 121);
+      background: linear-gradient(313deg,
+          rgba(9, 9, 121, 1) 34%,
+          rgba(42, 250, 209, 1) 100%);
+    }
+
+    .container {
+      width: 900px;
+      font-size: small;
+      margin-top: 80px;
+
+      padding: 20px;
+      height: 100vh;
+    }
+
+    h2,
+    h3 {
+      color: white;
+    }
+
+    .gps {
+      display: flex;
+
+    }
+
+    .gps .form-check {
+      margin-left: 10px;
+    }
+
+    .form-check {
+      margin-left: 10px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container mt-5">
+    <div class="header"><h2>Consulta de Vehículo</h2> <img src="./asset/logo  blanco .png" height="60px" alt=""></div>
+    <form id="consultaForm" class="mb-4">
+      <div class="mb-3">
+        <label for="patente" class="form-label">Patente del Vehículo</label>
+        <input type="text" class="form-control" id="patente" name="patente" placeholder="Ej: GZWY-32" required />
+      </div>
+      <div class="gps">
+        <div class="form-check mr-3">
+          <input class="form-check-input" type="checkbox" id="gpsCheckbox" name="features" value="MasGPS" checked
+            readonly />
+          <label class="form-check-label" for="gpsCheckbox">MasGPS</label>
+        </div>
+        <div class="form-check mr-3">
+          <input class="form-check-input" type="checkbox" id="ejesCheckbox" name="features"
+            value="Acelerómetro de 3  Ejes" checked />
+          <label class="form-check-label" for="ejesCheckbox">Acelerómetro de 3 Ejes</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="GiroCheckbox" name="features"
+            value="Giroscopio de 3 Ejes" checked />
+          <label class="form-check-label" for="sentinelCheckbox">Giroscopio de 3 Ejes</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="GNSSCheckbox" name="features" value="Conexión GNSS"
+            checked />
+          <label class="form-check-label" for="sentinelCheckbox">Conexión GNSS</label>
+        </div>
+
+      </div>
+      <div class="conf2">
+        <div class="form-check mr-3">
+          <input class="form-check-input" type="checkbox" id="corteMotorCheckbox" name="features" value="Corte Motor" />
+          <label class="form-check-label" for="corteMotorCheckbox">Corte Motor</label>
+        </div>
+       
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="somnolenciaCheckbox" name="features" value="Fatiga /Somnolecia" />
+          <label class="form-check-label" for="sentinelCheckbox">Fatiga /Somnolecia</label>
+        </div>
+        
+        <div class="form-check mr-3">
+          <input class="form-check-input" type="checkbox" id="idMotorCheckbox" name="features" value="Identificador de Conductor" />
+          <label class="form-check-label" for="corteMotorCheckbox">Identificador de Conductor </label>
+        </div>
+        <div class="form-check mr-3">
+          <input class="form-check-input" type="checkbox" id="temperaturaCheckbox" name="features" value="Sensor de Temperatura y Humedad" />
+          <label class="form-check-label" for="corteMotorCheckbox">Sensor de Temperatura y Humedad</label>
+        </div>
+        <div class="form-check mr-3">
+          <input class="form-check-input" type="checkbox" id="botonPanicoCheckbox" name="features" value="Botón de pánico" />
+          <label class="form-check-label" for="corteMotorCheckbox">Botón de pánico</label>
+        </div>
+
+      </div>
+      <button type="submit" class="btn btn-primary">Consultar</button>
+    </form>
+
+    <!-- Tabla para mostrar los datos del vehículo -->
+    <div id="resultado" class="d-none">
+      <h3>Datos del Vehículo</h3>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Patente</th>
+
+            <th>Última Actualización</th>
+            <th>IMEI</th>
+
+            <th>Centro de Costo</th>
+            <th>Unidad de Negocio</th>
+
+            <th>Descripción de Flota</th>
+          </tr>
+        </thead>
+        <tbody id="vehiculoDatos"></tbody>
+        <button id="descargarCertificado" class="btn btn-primary mb-3">
+          Descargar Certificado
+        </button>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    // Función para calcular la diferencia en días entre dos fechas
+    function calcularDiferenciaDias(fechaInicio, fechaFin) {
+      const unDia = 24 * 60 * 60 * 1000; // Milisegundos en un día
+      return Math.floor((fechaFin - fechaInicio) / unDia);
+    }
+    // Manejar el evento de envío del formulario
+    $("#consultaForm").submit(function (event) {
+      event.preventDefault();
+
+      const patente = $("#patente").val();
+
+      // Realizar la solicitud POST a la API
+      axios
+        .post("http://localhost/certificado/server/getData.php", {
+          patente: patente,
+        })
+        .then((response) => {
+          // Mostrar los datos en la tabla
+
+          const datosVehiculo = response.data;
+          // Convertir la fecha de last_update a un objeto Date
+          const fechaLastUpdate = new Date(datosVehiculo.last_update);
+          const fechaActual = new Date();
+
+          // Calcular la diferencia en días
+          const diasDiferencia = calcularDiferenciaDias(
+            fechaLastUpdate,
+            fechaActual
+          );
+          console.log(diasDiferencia);
+          // Si la diferencia es mayor a 3 día, mostrar alerta y no mostrar datos
+          if (diasDiferencia > 3) {
+            alert(
+              "Error: El vehículo está fuera de línea. Sin reportar hace " +
+              diasDiferencia +
+              " dias " +
+              datosVehiculo.last_update
+            );
+            $("#resultado").addClass("d-none");
+            return;
+          }
+          // Recolecta los valores de los checkboxes
+          let selectedFeatures = [];
+          $('input[name="features"]:checked').each(function () {
+            selectedFeatures.push($(this).val());
+          });
+
+          // Guarda los valores seleccionados en localStorage
+          localStorage.setItem(
+            "featuresSelected",
+            JSON.stringify(selectedFeatures)
+          );
+          // Llenar la tabla con los datos obtenidos
+          const tbody = $("#vehiculoDatos");
+          tbody.empty();
+          tbody.append(`
+                <tr>
+                    <td>${datosVehiculo.patente}</td>
+                    <td>${datosVehiculo.last_update}</td>
+                    <td>${datosVehiculo.imei}</td>
+                    <td>${datosVehiculo.descCentroCosto}</td>
+                    <td>${datosVehiculo.unidadNegocio}</td>
+                    <td>${datosVehiculo.descFlota}</td>
+                </tr>
+            `);
+
+          // Mostrar la sección de resultados
+          $("#resultado").removeClass("d-none");
+
+          // Guardar los datos en localStorage
+          localStorage.setItem(
+            "vehiculoDatos",
+            JSON.stringify(datosVehiculo)
+          );
+        })
+        .catch((error) => {
+          console.error("Error al consultar el vehículo:", error);
+          alert(
+            "No se encontraron datos para la patente ingresada o ocurrió un error."
+          );
+        });
+    });
+
+    $("#descargarCertificado").click(function () {
+      window.open("hoja.html", "_blank");
+    });
+  </script>
+</body>
+
+</html>
