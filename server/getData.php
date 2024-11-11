@@ -1,4 +1,14 @@
 <?php
+// Permitir solicitudes desde tu dominio específico (Netlify)
+header("Access-Control-Allow-Origin: https://certificado-masgps.netlify.app");
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
+// Manejar la solicitud preflight (OPTIONS)
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    header("HTTP/1.1 204 No Content");
+    exit;
+}
 
 require './config.php';
 
