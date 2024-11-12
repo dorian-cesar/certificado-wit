@@ -1,6 +1,6 @@
 <?php
 // Permitir solicitudes desde tu dominio específico (Netlify)
-header("Access-Control-Allow-Origin: https://certificado-masgps.netlify.app , http://localhost/certificado/index.html");
+header("Access-Control-Allow-Origin: https://certificado-masgps.netlify.app");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 //*
