@@ -267,7 +267,7 @@ background: linear-gradient(313deg,
                 fechaHora: fechaHoraActual
             };
 
-            axios.post('./server/escribirFolio.php', datos)
+            axios.post('https://masgps-bi.wit.la/certificado-wit/server/escribirFolio.php', datos)
                 .then(response => {
                     console.log('Datos enviados correctamente:', response.data);
                     const folio = response.data.id;
