@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Certificado</title>
     <style>
         body {
@@ -127,7 +128,9 @@
 <body>
     <div class="container">
         <div class="folio mt-3">
-            <p>Folio:<b> 010203</b></p>
+            <p>Folio:<b> 00<spam id="folio"></spam>
+
+            </b></p>
         </div>
         <div class="logo mt-5">
             <img src="./asset/Captura.JPG" alt="" />
@@ -224,6 +227,26 @@
             var verify = generarClaveAleatoria(10);
             const codigo = verify;
             const patente = datosVehiculo.patente;
+            const fechaHoraActual = new Date().toISOString();
+
+            const datos = {
+                patente: patente,
+                codigo: codigo,
+                fechaHora: fechaHoraActual
+            };
+
+            axios.post('https://masgps-bi.wit.la/certificado-wit/server/escribirFolio.php', datos)
+                .then(response => {
+                    console.log('Datos enviados correctamente:', response.data);
+                    const folio = response.data.id;
+                    console.log(folio);
+                    $("#folio").text(folio);
+
+                    localStorage.setItem(
+                        "folio",
+                        JSON.stringify(folio)
+                    );
+                });
 
             verify = verify + '/' + patente;
             console.log(verify);
@@ -313,6 +336,7 @@
                 $("#lpf").html(datosVehiculo.last_update);
                 $("#rut").text(rut);
                 $("#razon").text(razonSocial);
+                
             }
 
             function generarClaveAleatoria(longitud) {

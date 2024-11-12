@@ -54,7 +54,9 @@
 
 <body>
   <div class="container mt-5">
-    <div class="header"><h2>Consulta de Vehículo</h2> <img src="./asset/logo  blanco .png" height="60px" alt=""></div>
+    <div class="header">
+      <h2>Consulta de Vehículo</h2> <img src="./asset/logo  blanco .png" height="60px" alt="">
+    </div>
     <form id="consultaForm" class="mb-4">
       <div class="mb-3">
         <label for="patente" class="form-label">Patente del Vehículo</label>
@@ -72,8 +74,8 @@
           <label class="form-check-label" for="ejesCheckbox">Acelerómetro de 3 Ejes</label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="GiroCheckbox" name="features"
-            value="Giroscopio de 3 Ejes" checked />
+          <input class="form-check-input" type="checkbox" id="GiroCheckbox" name="features" value="Giroscopio de 3 Ejes"
+            checked />
           <label class="form-check-label" for="sentinelCheckbox">Giroscopio de 3 Ejes</label>
         </div>
         <div class="form-check">
@@ -88,22 +90,26 @@
           <input class="form-check-input" type="checkbox" id="corteMotorCheckbox" name="features" value="Corte Motor" />
           <label class="form-check-label" for="corteMotorCheckbox">Corte Motor</label>
         </div>
-       
+
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="somnolenciaCheckbox" name="features" value="Fatiga /Somnolecia" />
+          <input class="form-check-input" type="checkbox" id="somnolenciaCheckbox" name="features"
+            value="Fatiga /Somnolecia" />
           <label class="form-check-label" for="sentinelCheckbox">Fatiga /Somnolecia</label>
         </div>
-        
+
         <div class="form-check mr-3">
-          <input class="form-check-input" type="checkbox" id="idMotorCheckbox" name="features" value="Identificador de Conductor" />
+          <input class="form-check-input" type="checkbox" id="idMotorCheckbox" name="features"
+            value="Identificador de Conductor" />
           <label class="form-check-label" for="corteMotorCheckbox">Identificador de Conductor </label>
         </div>
         <div class="form-check mr-3">
-          <input class="form-check-input" type="checkbox" id="temperaturaCheckbox" name="features" value="Sensor de Temperatura y Humedad" />
+          <input class="form-check-input" type="checkbox" id="temperaturaCheckbox" name="features"
+            value="Sensor de Temperatura y Humedad" />
           <label class="form-check-label" for="corteMotorCheckbox">Sensor de Temperatura y Humedad</label>
         </div>
         <div class="form-check mr-3">
-          <input class="form-check-input" type="checkbox" id="botonPanicoCheckbox" name="features" value="Botón de pánico" />
+          <input class="form-check-input" type="checkbox" id="botonPanicoCheckbox" name="features"
+            value="Botón de pánico" />
           <label class="form-check-label" for="corteMotorCheckbox">Botón de pánico</label>
         </div>
 
@@ -221,8 +227,13 @@
     });
 
     $("#descargarCertificado").click(function () {
-      window.open("hoja.html", "_blank");
-    });
+      
+          window.open("hoja.html", "_blank");
+        })
+        .catch(error => {
+          console.error('Error al enviar los datos:', error);
+        });
+  
   </script>
 </body>
 
