@@ -1,0 +1,114 @@
+body {
+    margin: 0%;
+    padding: 0%;
+    background: rgb(9, 9, 121);
+    background: linear-gradient(313deg,
+            rgba(9, 9, 121, 1) 34%,
+            rgba(42, 250, 209, 1) 100%);
+}
+
+#featuresListContainer {
+
+    display: flexbox;
+    width: 100%;
+    text-align: center;
+
+}
+
+.box {
+    display: inline-block;
+    height: 60px;
+    width: 250px;
+    background-color: #dadada;
+    margin: 1px;
+
+   
+    text-align: left;
+    padding: 2px;
+    line-height: 25px;
+
+
+}
+
+.container {
+    width: 900px;
+    border: 3px, solid, rgb(0, 255, 55);
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Sombra elegante */
+    border: 1px solid #ddd;
+    /* Borde fino para definición */
+    background-color: #fff;
+    /* Fondo blanco para contraste */
+}
+
+.fixed-buttons {
+    position: fixed;
+    top: 80px;
+    right: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+    /* Asegura que los botones estén al frente */
+    width: 200px;
+    /* Ancho fijo para ambos botones */
+}
+
+.fixed-buttons button {
+    width: 100%;
+    /* Hace que ambos botones ocupen el ancho completo del contenedor */
+}
+
+.logo {
+    text-align: center;
+}
+
+.folio p {
+    margin-top: 3px;
+    text-align: left;
+}
+
+.contenido {
+    width: 100%;
+    margin-top: 25px;
+    text-align: justify;
+}
+
+.QR {
+    display: flex;
+    margin-top: 30px;
+    justify-content: center;
+}
+
+.firmas {
+    width: 80%;
+    display: flex;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    justify-content: space-between;
+}
+
+.conf .form-check-input {
+    transform: scale(1.5);
+    /* Ajusta el valor para cambiar el tamaño */
+    margin-right: 5px;
+    color: red;
+}
+
+@media print {
+    .fixed-buttons {
+        display: none;
+    }
+
+}
+
+.fa-map-marker-alt {
+    color: rgb(2, 145, 2);
+}

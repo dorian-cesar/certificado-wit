@@ -1,9 +1,21 @@
 <?php
+// Permitir solicitudes desde tu dominio específico (Netlify)
+header("Access-Control-Allow-Origin: https://certificado-masgps.netlify.app");
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+//*
+// Manejar la solicitud preflight (OPTIONS)
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    header("HTTP/1.1 204 No Content");
+    exit;
+}
 require '../vendor/autoload.php'; // Carga las dependencias
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use Dotenv\Dotenv;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 // Cargar variables de entorno desde el archivo .env
 $dotenv = Dotenv::createImmutable(__DIR__);
@@ -17,9 +29,46 @@ $smtpUser = $_ENV['MAIL_USERNAME'];
 $smtpPass = $_ENV['MAIL_PASSWORD'];
 $fromName = $_ENV['MAIL_FROM_NAME'];
 
+
+$data = json_decode(file_get_contents('php://input'), true);
+
+// Extraer los datos del JSON
+
+$correo = $data['correo'];
+$contenido = $data['contenido'];
+
+$rutaImagen = realpath(__DIR__ . '/../asset/Captura.JPG');
+
+// Configuración de dompdf
+$options = new Options();
+$options->set('isHtml5ParserEnabled', true);
+$options->set('isRemoteEnabled', true);
+
+$dompdf = new Dompdf($options);
+$dompdf->loadHtml($contenido); // Carga el contenido HTML
+
+// Opciones de papel y orientación
+$dompdf->setPaper('A4', 'portrait'); // Puedes cambiar a 'landscape' si lo necesitas
+$dompdf->render();
+
+// Guardar el PDF temporalmente
+$pdfOutput = $dompdf->output();
+$pdfFilePath = 'temp_file.pdf';
+file_put_contents($pdfFilePath, $pdfOutput);
+
+ $tempFilePath = 'temp_file.html';
+  file_put_contents($tempFilePath, $contenido);
+
+
+
 // Verifica que el correo destinatario haya sido enviado por POST
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['correo'])) {
-    $correoDestinatario = $_POST['correo'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($correo)) {
+    echo
+    $correoDestinatario = $data['correo'];
+
+        // Crea un archivo temporal para almacenar el contenido HTML
+     //   $tempFilePath = 'temp_file.html';
+     //   file_put_contents($tempFilePath, $contenido);
 
     $mail = new PHPMailer(true);
 
@@ -40,8 +89,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['correo'])) {
         // Contenido del correo
         $mail->isHTML(true);
         $mail->Subject = 'Asunto del correo';
-        $mail->Body    = 'Este es el cuerpo del correo de prueba.';
+        $mail->Body = 'Se adjunta el certificado en formato HTML.'; // Mensaje en el cuerpo del correo
 
+         // Adjuntar el archivo HTML
+        // $mail->addAttachment($tempFilePath, 'certificado.html'); // Agrega el archivo adjunto
+        $mail->addAttachment($pdfFilePath, 'certificado.pdf');
         // Enviar el correo
         $mail->send();
         echo 'Correo enviado exitosamente';
@@ -51,4 +103,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['correo'])) {
 } else {
     echo 'Por favor, proporciona un correo en el campo "correo".';
 }
+    
 ?>
