@@ -28,13 +28,25 @@
     }
 
     h2,
-    h3 {
+    h3,h4,h6 {
       color: white;
     }
-
-    .gps {
+    .tecnologias {
       display: flex;
+    }
+    .gps {
+     
+     
+      margin-top: 10;
+      font-size: medium;
 
+    }
+    .conf2 {
+    
+   
+      margin-top: 10;
+      font-size: medium;
+    
     }
 
     .gps .form-check {
@@ -62,59 +74,66 @@
         <label for="patente" class="form-label">Patente del Vehículo</label>
         <input type="text" class="form-control" id="patente" name="patente" placeholder="Ej: GZWY-32" required />
       </div>
-      <div class="gps">
-        <div class="form-check mr-3">
-          <input class="form-check-input" type="checkbox" id="gpsCheckbox" name="features" value="MasGPS" checked
-            readonly />
-          <label class="form-check-label" for="gpsCheckbox">MasGPS</label>
-        </div>
-        <div class="form-check mr-3">
-          <input class="form-check-input" type="checkbox" id="ejesCheckbox" name="features"
-            value="Acelerómetro de 3  Ejes" checked />
-          <label class="form-check-label" for="ejesCheckbox">Acelerómetro de 3 Ejes</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="GiroCheckbox" name="features" value="Giroscopio de 3 Ejes"
-            checked />
-          <label class="form-check-label" for="sentinelCheckbox">Giroscopio de 3 Ejes</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="GNSSCheckbox" name="features" value="Conexión GNSS"
-            checked />
-          <label class="form-check-label" for="sentinelCheckbox">Conexión GNSS</label>
-        </div>
-
+      <h4>Productos/Servicios</h4>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="GiroCheckbox" name="no" value="GPS"
+          checked />
+        <label class="form-check-label" for="sentinelCheckbox" style="font-size: medium;">MasGPS</label>
       </div>
-      <div class="conf2">
-        <div class="form-check mr-3">
-          <input class="form-check-input" type="checkbox" id="corteMotorCheckbox" name="features" value="Corte Motor" />
-          <label class="form-check-label" for="corteMotorCheckbox">Corte Motor</label>
-        </div>
 
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="somnolenciaCheckbox" name="features"
-            value="Fatiga /Somnolecia" />
-          <label class="form-check-label" for="sentinelCheckbox">Fatiga /Somnolecia</label>
+      <h6>Tecnologías Aplicadas</h6>
+      <div class="tecnologias">
+        <div class="gps">
+    
+          <div class="form-check mr-3">
+            <input class="form-check-input" type="checkbox" id="ejesCheckbox" name="features"
+              value="Acelerómetro de 3  Ejes" checked />
+            <label class="form-check-label" for="ejesCheckbox">Acelerómetro de 3 Ejes</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="GiroCheckbox" name="features" value="Giroscopio de 3 Ejes"
+              checked />
+            <label class="form-check-label" for="sentinelCheckbox">Giroscopio de 3 Ejes</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="GNSSCheckbox" name="features" value="Conexión GNSS"
+              checked />
+            <label class="form-check-label" for="sentinelCheckbox">Conexión GNSS</label>
+          </div>
+          <div class="form-check mr-3">
+            <input class="form-check-input" type="checkbox" id="corteMotorCheckbox" name="features" value="Corte Motor" />
+            <label class="form-check-label" for="corteMotorCheckbox">Corte Motor</label>
+          </div>
+  
         </div>
-
-        <div class="form-check mr-3">
-          <input class="form-check-input" type="checkbox" id="idMotorCheckbox" name="features"
-            value="Identificador de Conductor" />
-          <label class="form-check-label" for="corteMotorCheckbox">Identificador de Conductor </label>
+        <div class="conf2">
+         
+  
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="somnolenciaCheckbox" name="features"
+              value="Fatiga /Somnolecia" />
+            <label class="form-check-label" for="sentinelCheckbox">Fatiga /Somnolecia</label>
+          </div>
+  
+          <div class="form-check mr-3">
+            <input class="form-check-input" type="checkbox" id="idMotorCheckbox" name="features"
+              value="Identificador de Conductor" />
+            <label class="form-check-label" for="corteMotorCheckbox">Identificador de Conductor </label>
+          </div>
+          <div class="form-check mr-3">
+            <input class="form-check-input" type="checkbox" id="temperaturaCheckbox" name="features"
+              value="Sensor de Temperatura y Humedad" />
+            <label class="form-check-label" for="corteMotorCheckbox">Sensor de Temperatura y Humedad</label>
+          </div>
+          <div class="form-check mr-3">
+            <input class="form-check-input" type="checkbox" id="botonPanicoCheckbox" name="features"
+              value="Botón de pánico" />
+            <label class="form-check-label" for="corteMotorCheckbox">Botón de pánico</label>
+          </div>
+  
         </div>
-        <div class="form-check mr-3">
-          <input class="form-check-input" type="checkbox" id="temperaturaCheckbox" name="features"
-            value="Sensor de Temperatura y Humedad" />
-          <label class="form-check-label" for="corteMotorCheckbox">Sensor de Temperatura y Humedad</label>
-        </div>
-        <div class="form-check mr-3">
-          <input class="form-check-input" type="checkbox" id="botonPanicoCheckbox" name="features"
-            value="Botón de pánico" />
-          <label class="form-check-label" for="corteMotorCheckbox">Botón de pánico</label>
-        </div>
-
       </div>
-      <button type="submit" class="btn btn-primary">Consultar</button>
+      <button type="submit" class="btn btn-primary mt-3">Consultar</button>
     </form>
 
     <!-- Tabla para mostrar los datos del vehículo -->
@@ -135,10 +154,9 @@
           </tr>
         </thead>
         <tbody id="vehiculoDatos"></tbody>
-        <button id="descargarCertificado" class="btn btn-primary mb-3">
-          Descargar Certificado
-        </button>
+        
       </table>
+      <button id="descargarCertificado" class="btn btn-primary mt-3">Descargar Certificado</button>
     </div>
   </div>
 
@@ -155,6 +173,8 @@
       const patente = $("#patente").val();
 
       // Realizar la solicitud POST a la API
+      //https://masgps-bi.wit.la
+      //http://localhost/
       axios
         .post("https://masgps-bi.wit.la/certificado-wit/server/getData.php", {
           patente: patente,
@@ -207,7 +227,9 @@
                     <td>${datosVehiculo.unidadNegocio}</td>
                     <td>${datosVehiculo.descFlota}</td>
                 </tr>
+                
             `);
+        
 
           // Mostrar la sección de resultados
           $("#resultado").removeClass("d-none");

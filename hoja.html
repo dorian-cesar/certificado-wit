@@ -47,7 +47,7 @@ background: linear-gradient(313deg,
             }
 
             .container {
-                width: 700px;
+                width: 900px;
                 border: 3px, solid, rgb(0, 255, 55);
                 margin: auto;
                 margin-top: 20px;
@@ -131,24 +131,27 @@ background: linear-gradient(313deg,
                 background: black;
                 color:white;
             }
+            p {
+                width: 90%;
+                margin: auto;
+            }
         </style>
         <div class="container">
 
             </head>
-            <div class="folio mt-3">
+            <div class="folio ">
                 <p>Folio:<b> 00<spam id="folio"></spam>
 
                     </b></p>
             </div>
-            <div class="logo mt-5">
+            <div class="logo ">
                 <!-- <img src="./asset/Captura.JPG" alt="" /> -->
                 <img src="https://masgps-bi.wit.la/certificado-wit/asset/Captura.JPG" alt="no img">
                 <h1>CERTIFICADO</h1>
             </div>
             <div class="contenido">
                 <p style="text-align: center">
-                    Servicios de Implementación y tecnologías de la información y
-                    comunicación
+                    Servicio de Implementación Tecnológica de la Información y Comunicación
                 </p>
                 <p>
                     Con fecha <b id="date">01/01/2023</b>, la empresa proveedora de
@@ -158,15 +161,15 @@ background: linear-gradient(313deg,
                     de un equipamiento con la siguiente identificación:
                 </p>
 
-                <h4>Tabla de Productos/Servicios</h4>
+                <h4 style="width: 90%;margin: auto;">Tabla de Productos/Servicios</h4>
               
-                <table class="table table-bordered mt-5" style="width: 90%;margin: auto;margin-bottom: 10px;">
+                <table class="table table-bordered " style="width: 90%;margin: auto;margin-bottom: 10px;">
                     <thead>
                         <tr>
                             <th scope="col">GPS</th>
                             <th scope="col">IMEI</th>
                             <th scope="col">No Cert-QA</th>
-                            <th scope="col">Ultima lectura</th>
+                            <th scope="col">Última Georreferencia</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -180,15 +183,16 @@ background: linear-gradient(313deg,
                     </tbody>
                 </table>
 
-                <div id="featuresListContainer">
+               
+
 
                 </div>
+                <div id="contenido-tabla"></div>
 
-                <hr />
+              
                 <div class="texto">
                     <p>
-                        Homologado y certificado bajo las normas de uso para equipos
-                        electrónicos y de telecomunicaciones FCC.
+                        Equipo electrónico homologado y certificado bajo las normas de uso para equipos electrónicos y de telecomunicaciones FCC.
                     </p>
                     <p>
                         Los dispositivos se encuentran instalados en los vehículos de la
@@ -196,8 +200,7 @@ background: linear-gradient(313deg,
                         monitoreo, control, mesa de ayuda, estadística y administración.
                     </p>
                     <p>
-                        El presente certificado se extiende para los fines de presentación
-                        que requiera la empresa, con fecha de expiración el
+                        El presente certificado se emite a solicitud de la parte interesada y expira el
                         <b id="fechaVencimiento">31/12/2024</b>.
                     </p>
                 </div>
@@ -213,8 +216,8 @@ background: linear-gradient(313deg,
 
                 <div class="footer">
                     <p>
-                        <b>WIT</b> – Innovación Tecnológica, Obispo Umaña 633, RM, Santiago
-                        de Chile.
+                        <b>WIT</b> – Manuel Obispo Umaña #633, Estación Central, Santiago, Chile /
+                        Contactos: + 56 9 9073 7619 / soporte@wit.la
                     </p>
                 </div>
             </div>
@@ -266,7 +269,7 @@ background: linear-gradient(313deg,
                 codigo: codigo,
                 fechaHora: fechaHoraActual
             };
-
+            $("#contenido-tabla").load("tabla.html");
             axios.post('https://masgps-bi.wit.la/certificado-wit/server/escribirFolio.php', datos)
                 .then(response => {
                     console.log('Datos enviados correctamente:', response.data);
@@ -341,7 +344,7 @@ background: linear-gradient(313deg,
             // Selecciona el contenedor de la lista
             let featuresList = $('#featuresListContainer');
 
-            // Verifica si existen características seleccionadas
+ /*           // Verifica si existen características seleccionadas
             if (featuresSelected && featuresSelected.length > 0) {
                 // Recorre cada característica y la añade a la lista
                 featuresSelected.forEach(function (feature) {
@@ -356,7 +359,7 @@ background: linear-gradient(313deg,
                 featuresList.append('<li class="list-group-item text-muted">No hay características seleccionadas.</li>');
             }
 
-
+*/
 
             // Verificar si la información existe en el localStorage
             if (patente) {

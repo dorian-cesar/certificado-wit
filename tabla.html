@@ -1,0 +1,36 @@
+
+
+
+
+   <table class="table table-bordered" style="width: 90%; margin: auto;">
+    <thead>
+      <tr>
+        <th colspan="4" class="text-center" style="color: white;background-color: black;">Tecnologías Aplicadas</th>
+      </tr>
+    </thead>
+    <tbody id="sensor-table"></tbody>
+  </table>
+
+
+<script>
+  $(document).ready(function() {
+    // Obtener el arreglo 'featuresSelected' desde localStorage
+    const featuresSelected = JSON.parse(localStorage.getItem('featuresSelected')) || [];
+
+    // Crear filas y columnas
+    let tableContent = "<tr>";
+    for (let i = 0; i < featuresSelected.length; i++) {
+      if (i > 0 && i % 4 === 0) {
+        tableContent += "</tr><tr>";
+      }
+      tableContent += `<td>${featuresSelected[i] || ""}</td>`;
+    }
+    tableContent += "</tr>";
+
+    // Insertar contenido en el tbody de la tabla
+    $("#sensor-table").html(tableContent);
+  });
+</script>
+
+
+
