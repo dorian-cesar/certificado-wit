@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Certificado</title>
-    
+
 
 </head>
 
@@ -22,7 +22,6 @@ background: linear-gradient(313deg,
         <meta charset="UTF-8" />
 
         <style>
-        
             #featuresListContainer {
 
                 display: flexbox;
@@ -47,7 +46,7 @@ background: linear-gradient(313deg,
             }
 
             .container {
-                width: 900px;
+                width: 18cm;
                 border: 3px, solid, rgb(0, 255, 55);
                 margin: auto;
                 margin-top: 20px;
@@ -126,11 +125,13 @@ background: linear-gradient(313deg,
             .fa-map-marker-alt {
                 color: rgb(2, 145, 2);
             }
+
             thead {
                 width: 90%;
                 background: black;
-                color:white;
+                color: white;
             }
+
             p {
                 width: 90%;
                 margin: auto;
@@ -146,7 +147,7 @@ background: linear-gradient(313deg,
             </div>
             <div class="logo ">
                 <!-- <img src="./asset/Captura.JPG" alt="" /> -->
-                <img src="https://masgps-bi.wit.la/certificado-wit/asset/Captura.JPG" alt="no img">
+                <img src="./asset/Captura.JPG" alt="no img">
                 <h1>CERTIFICADO</h1>
             </div>
             <div class="contenido">
@@ -162,7 +163,7 @@ background: linear-gradient(313deg,
                 </p>
 
                 <h4 style="width: 90%;margin: auto;">Tabla de Productos/Servicios</h4>
-              
+
                 <table class="table table-bordered " style="width: 90%;margin: auto;margin-bottom: 10px;">
                     <thead>
                         <tr>
@@ -183,45 +184,46 @@ background: linear-gradient(313deg,
                     </tbody>
                 </table>
 
-               
 
 
-                </div>
-                <div id="contenido-tabla"></div>
 
-              
-                <div class="texto">
-                    <p>
-                        Equipo electrónico homologado y certificado bajo las normas de uso para equipos electrónicos y de telecomunicaciones FCC.
-                    </p>
-                    <p>
-                        Los dispositivos se encuentran instalados en los vehículos de la
-                        empresa, conectados a un servicio de comunicaciones, plataformas de
-                        monitoreo, control, mesa de ayuda, estadística y administración.
-                    </p>
-                    <p>
-                        El presente certificado se emite a solicitud de la parte interesada y expira el
-                        <b id="fechaVencimiento">31/12/2024</b>.
-                    </p>
-                </div>
-                <div class="QR" style="    display: flex;
+            </div>
+            <div id="contenido-tabla"></div>
+
+
+            <div class="texto">
+                <p>
+                    Equipo electrónico homologado y certificado bajo las normas de uso para equipos electrónicos y de
+                    telecomunicaciones FCC.
+                </p>
+                <p>
+                    Los dispositivos se encuentran instalados en los vehículos de la
+                    empresa, conectados a un servicio de comunicaciones, plataformas de
+                    monitoreo, control, mesa de ayuda, estadística y administración.
+                </p>
+                <p>
+                    El presente certificado se emite a solicitud de la parte interesada y expira el
+                    <b id="fechaVencimiento">31/12/2024</b>.
+                </p>
+            </div>
+            <div class="QR" style="    display: flex;
                 margin-top: 30px;
                 justify-content: center;">
-                    <div id="qrCode" style="margin: auto;"></div>
-                </div>
-                <div class="firmas">
-                    <img src="https://masgps-bi.wit.la/certificado-wit/asset/euro.JPG" alt="" style="left: 0%;" />
-                    <img src="https://masgps-bi.wit.la/certificado-wit/asset/isra.JPG" alt="" style="right: 0%;" />
-                </div>
+                <div id="qrCode" style="margin: auto;"></div>
+            </div>
+            <div class="firmas">
+                <img src="./asset/euro.JPG" alt="" style="left: 0%;" />
+                <img src="./asset/isra.JPG" alt="" style="right: 0%;" />
+            </div>
 
-                <div class="footer">
-                    <p>
-                        <b>WIT</b> – Manuel Obispo Umaña #633, Estación Central, Santiago, Chile /
-                        Contactos: + 56 9 9073 7619 / soporte@wit.la
-                    </p>
-                </div>
+            <div class="footer">
+                <p>
+                    <b>WIT</b> – Manuel Obispo Umaña #633, Estación Central, Santiago, Chile /
+                    Contactos: + 56 9 9073 7619 / soporte@wit.la
+                </p>
             </div>
         </div>
+    </div>
     </div>
     <div class="fixed-buttons">
         <button onclick="window.print()" class="btn btn-primary mr-2">Imprimir</button>
@@ -318,8 +320,7 @@ background: linear-gradient(313deg,
 
             $("#fechaVencimiento").text(fechaVencimiento);
 
-            //var patente = localStorage.getItem("patente");
-            //  var vehiculoDatos=localStorage.getItem("vehiculoDatos");
+
 
             // const patente = datosVehiculo.patente;
             const rut = datosVehiculo.RUT;
@@ -339,27 +340,10 @@ background: linear-gradient(313deg,
             // Recupera los datos de 'featuresSelected' de localStorage
             let featuresSelected = JSON.parse(localStorage.getItem('featuresSelected'));
 
-            // let featuresSelected = arr;
 
             // Selecciona el contenedor de la lista
             let featuresList = $('#featuresListContainer');
 
- /*           // Verifica si existen características seleccionadas
-            if (featuresSelected && featuresSelected.length > 0) {
-                // Recorre cada característica y la añade a la lista
-                featuresSelected.forEach(function (feature) {
-                    let listItem = $('<div></div>').addClass('box');
-
-                    listItem.append('  <i class="fas fa-check-circle text-success">   </i>');
-                    listItem.append(feature);
-                    featuresList.append(listItem);
-                });
-            } else {
-                // Si no hay características guardadas, muestra un mensaje
-                featuresList.append('<li class="list-group-item text-muted">No hay características seleccionadas.</li>');
-            }
-
-*/
 
             // Verificar si la información existe en el localStorage
             if (patente) {
@@ -392,22 +376,23 @@ background: linear-gradient(313deg,
             const element = document.querySelector('.container');
 
             // Estilo temporal para ajustar el ancho al formato A4
-            element.style.width = '800px';
+          //  element.style.width = '18cm';
 
             // Opciones de PDF
             const opciones = {
-                margin: 50, // Margen reducido
-                filename: 'certificado.pdf',
+
+                    // Márgenes en centímetros (ajusta según sea necesario)
+                filename: 'documento.pdf', // Nombre del archivo PDF
                 image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 1, width: 1600 }, // Ajusta la escala
-                jsPDF: { unit: 'px', format: 'a4', orientation: 'portrait' }
+                html2canvas: { scale: 1, width: 1000 },
+                jsPDF: { unit: 'cm', format: 'a4', orientation: 'portrait' } // formato A4
             };
 
             // Genera y descarga el PDF
             html2pdf().set(opciones).from(element).save()
                 .then(() => {
                     // Restablece el estilo original del ancho
-                    element.style.width = '800px';
+                  //  element.style.width = '800px';
                 });
         }
         function abrirModalCorreo() {
@@ -422,20 +407,33 @@ background: linear-gradient(313deg,
                 alert('Por favor, ingrese un correo electrónico.');
                 return;
             }
-            $('#modalCorreo').modal('hide'); 
-            axios.post('https://masgps-bi.wit.la/certificado-wit/server/enviar_correo.php', {
-                correo: email,
-                contenido: contenidoDiv // Enviar el contenido del div al servidor
+            $('#modalCorreo').modal('hide');
 
-            })
-                .then(response => {
-                    alert('Correo enviado exitosamente');
+            // Configurar las opciones para el PDF en tamaño A4
+            const options = {
+                // margin: [1, 2, 1, 2],        // Márgenes en centímetros (ajusta según sea necesario)
+                filename: 'documento.pdf', // Nombre del archivo PDF
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 1, width: 1000 },
+                jsPDF: { unit: 'cm', format: 'a4', orientation: 'portrait' } // formato A4
+            };
+            // Generar PDF y enviarlo al backend en base64
+            html2pdf().set(options).from(contenidoDiv).toPdf().output('datauristring').then(function (pdfBase64) {
+                $.ajax({
+                    url: 'https://masgps-bi.wit.la/certificado-wit/server/send_mail.php',
+                    type: 'POST',
 
-                })
-                .catch(error => {
-                    console.error('Error al enviar el correo:', error);
-                    alert('Error al enviar el correo');
+                    data: { pdfBase64: pdfBase64, email: email },
+                    success: function (response) {
+                        alert('Correo enviado correctamente.');
+                    },
+                    error: function () {
+                        alert('Hubo un error al enviar el correo.');
+                    }
                 });
+            });
+
+
 
         });
 
