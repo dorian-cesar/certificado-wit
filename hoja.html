@@ -46,7 +46,7 @@ background: linear-gradient(313deg,
             }
 
             .container {
-                width: 20cm;
+                width: 21cm;
                 border: 3px, solid, rgb(0, 255, 55);
                 margin: auto;
                 margin-top: 20px;
@@ -136,9 +136,11 @@ background: linear-gradient(313deg,
                 width: 90%;
                 margin: auto;
             }
+
             #foot {
                 text-align: center;
-                font-size:smaller;
+                font-size: smaller;
+                width: 100%;
             }
         </style>
         <div class="container">
@@ -171,8 +173,9 @@ background: linear-gradient(313deg,
                 <table class="table table-bordered " style="width: 90%;margin: auto;margin-bottom: 10px;">
                     <thead>
                         <tr>
-                            <th colspan="4" class="text-center" style="color: white;background-color: black;">Tabla de Productos/Servicios</th>
-                          </tr>
+                            <th colspan="4" class="text-center" style="color: white;background-color: black;">Tabla de
+                                Productos/Servicios</th>
+                        </tr>
                         <tr>
                             <th scope="col">GPS</th>
                             <th scope="col">IMEI</th>
@@ -181,7 +184,7 @@ background: linear-gradient(313deg,
                         </tr>
                     </thead>
                     <tbody>
-                        
+
                         <tr>
                             <td>MasGPS</td>
                             <td id="imei">31G1812561067</td>
@@ -224,12 +227,12 @@ background: linear-gradient(313deg,
                 <img src="./asset/isra.JPG" alt="" style="right: 0%;" />
             </div>
 
-            <div class="footer">
-                <p id="foot">
-                    <b>WIT</b> – Manuel Obispo Umaña #633, Estación Central, Santiago, Chile /
-                    Contactos: + 56 9 9073 7619 / soporte@wit.la
-                </p>
+
+            <div id="foot">
+                <b>WIT</b> – Manuel Obispo Umaña #633, Estación Central, Santiago, Chile /
+                Contactos: + 56 9 9073 7619 / soporte@wit.la
             </div>
+
         </div>
     </div>
     </div>
@@ -384,12 +387,12 @@ background: linear-gradient(313deg,
             const element = document.querySelector('.container');
 
             // Estilo temporal para ajustar el ancho al formato A4
-          //  element.style.width = '18cm';
+            //  element.style.width = '18cm';
 
             // Opciones de PDF
             const opciones = {
 
-                    // Márgenes en centímetros (ajusta según sea necesario)
+                // Márgenes en centímetros (ajusta según sea necesario)
                 filename: 'documento.pdf', // Nombre del archivo PDF
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { scale: 1, width: 1000 },
@@ -400,7 +403,7 @@ background: linear-gradient(313deg,
             html2pdf().set(opciones).from(element).save()
                 .then(() => {
                     // Restablece el estilo original del ancho
-                  //  element.style.width = '800px';
+                    //  element.style.width = '800px';
                 });
         }
         function abrirModalCorreo() {
