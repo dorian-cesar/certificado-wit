@@ -46,7 +46,7 @@ background: linear-gradient(313deg,
             }
 
             .container {
-                width: 18cm;
+                width: 20cm;
                 border: 3px, solid, rgb(0, 255, 55);
                 margin: auto;
                 margin-top: 20px;
@@ -136,9 +136,9 @@ background: linear-gradient(313deg,
                 width: 90%;
                 margin: auto;
             }
-            footer {
+            #foot {
                 text-align: center;
-                font-size: small;
+                font-size:smaller;
             }
         </style>
         <div class="container">
@@ -166,10 +166,13 @@ background: linear-gradient(313deg,
                     de un equipamiento con la siguiente identificación:
                 </p>
 
-                <h4 style="width: 90%;margin: auto;">Tabla de Productos/Servicios</h4>
+                <!-- <h4 style="width: 90%;margin: auto;">Tabla de Productos/Servicios</h4> -->
 
                 <table class="table table-bordered " style="width: 90%;margin: auto;margin-bottom: 10px;">
                     <thead>
+                        <tr>
+                            <th colspan="4" class="text-center" style="color: white;background-color: black;">Tabla de Productos/Servicios</th>
+                          </tr>
                         <tr>
                             <th scope="col">GPS</th>
                             <th scope="col">IMEI</th>
@@ -178,6 +181,7 @@ background: linear-gradient(313deg,
                         </tr>
                     </thead>
                     <tbody>
+                        
                         <tr>
                             <td>MasGPS</td>
                             <td id="imei">31G1812561067</td>
@@ -221,7 +225,7 @@ background: linear-gradient(313deg,
             </div>
 
             <div class="footer">
-                <p>
+                <p id="foot">
                     <b>WIT</b> – Manuel Obispo Umaña #633, Estación Central, Santiago, Chile /
                     Contactos: + 56 9 9073 7619 / soporte@wit.la
                 </p>
