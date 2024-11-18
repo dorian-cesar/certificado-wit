@@ -237,7 +237,7 @@ background: linear-gradient(313deg,
         </div>
     </div>
     </div>
-    <div id="whatsapp">hola</div>
+    <div id="whatsapp">ws</div>
     <div class="fixed-buttons">
         <button onclick="window.print()" class="btn btn-primary mr-2">Imprimir</button>
         <button onclick="descargarPDF()" class="btn btn-success">Descargar PDF</button>
@@ -415,7 +415,9 @@ background: linear-gradient(313deg,
         }
         $('#btnEnviarCorreo').click(function () {
             const email = $('#email').val();
-            const contenidoDiv = document.querySelector('.margen').innerHTML;
+            // Selecciona el contenido que deseas convertir en PDF
+            const element = document.querySelector('.container');
+
 
             if (!email) {
                 alert('Por favor, ingrese un correo electrónico.');
@@ -425,14 +427,14 @@ background: linear-gradient(313deg,
 
             // Configurar las opciones para el PDF en tamaño A4
             const options = {
-                // margin: [1, 2, 1, 2],        // Márgenes en centímetros (ajusta según sea necesario)
+                 margin:1 ,// [1, 2, 1, 2],        // Márgenes en centímetros (ajusta según sea necesario)
                 filename: 'documento.pdf', // Nombre del archivo PDF
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { scale: 1, width: 1000 },
                 jsPDF: { unit: 'cm', format: 'a4', orientation: 'portrait' } // formato A4
             };
             // Generar PDF y enviarlo al backend en base64
-            html2pdf().set(options).from(contenidoDiv).toPdf().output('datauristring').then(function (pdfBase64) {
+            html2pdf().set(options).from(element).toPdf().output('datauristring').then(function (pdfBase64) {
                 $.ajax({
                     url: 'https://masgps-bi.wit.la/certificado-wit/server/send_mail.php',
                     type: 'POST',
