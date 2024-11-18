@@ -237,6 +237,7 @@ background: linear-gradient(313deg,
         </div>
     </div>
     </div>
+    <div id="whatsapp">hola</div>
     <div class="fixed-buttons">
         <button onclick="window.print()" class="btn btn-primary mr-2">Imprimir</button>
         <button onclick="descargarPDF()" class="btn btn-success">Descargar PDF</button>
@@ -283,6 +284,7 @@ background: linear-gradient(313deg,
                 codigo: codigo,
                 fechaHora: fechaHoraActual
             };
+            $("#whatsapp").load("ws.html");
             $("#contenido-tabla").load("tabla.html");
             axios.post('https://masgps-bi.wit.la/certificado-wit/server/escribirFolio.php', datos)
                 .then(response => {
