@@ -24,7 +24,7 @@
             margin-top: 50px;
 
             padding: 20px;
-            height: 100vh;
+          
 
         }
 
@@ -38,6 +38,13 @@
       margin-bottom: 10px;
       
     }
+    footer {
+            
+            background-color: #f8f9fa;
+            padding: 10px 0;
+            text-align: center;
+            color: #000000;
+        }
     </style>
 </head>
 
@@ -45,7 +52,7 @@
     <div class="container">
        <header >
         <h1 style="color: white;background-color: black;padding: 5px; border-radius: 10px;width: 70%;">Ultima ubicación del vehículo</h1>
-        <img src="./asset/Captura.JPG" alt="" height="80px">
+        <img src="./asset/logo negro final  (1).svg" alt="" height="80px">
        
        </header>
         <div class="content">
@@ -71,6 +78,9 @@
         </div>
 
     </div>
+    <footer class="mt-5">
+        <p>&copy; 2024 Certificados de Operabilidad MasGPS by wit.la. Todos los derechos reservados.</p>
+    </footer>
     <script>
         $(document).ready(function () {
             const datosGuardados = localStorage.getItem('vehiculoDatos');
@@ -98,5 +108,7 @@
         });
     </script>
 </body>
+
+
 
 </html>

@@ -122,9 +122,9 @@ p {
     width: 90%;
     margin: auto;
     line-height: 1.5;
-    margin-bottom: 2px;
-    text-align: justify; text-indent: 2em;
-    margin-top: 6px;
+    margin-bottom: 4px;
+    text-align: justify; text-indent: 1em;
+    margin-top: 7px;
 }
 
 #foot {
