@@ -62,9 +62,8 @@ $("#consultaForm").submit(function (event) {
                 <td>${datosVehiculo.patente}</td>
                 <td>${datosVehiculo.last_update}</td>
                 <td>${datosVehiculo.imei}</td>
-                <td>${datosVehiculo.descCentroCosto}</td>
-                <td>${datosVehiculo.unidadNegocio}</td>
-                <td>${datosVehiculo.descFlota}</td>
+                <td>${datosVehiculo.Razon_Social}</td>
+            
             </tr>
             
         `);
