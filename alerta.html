@@ -35,7 +35,7 @@
        
             // Función para mostrar el modal con mensaje y acción personalizada
             function mostrarModal(message, callback) {
-                $('#mensajeModal').text(message); // Configurar el mensaje
+                $('#mensajeModal').html(message); // Configurar el mensaje
                 $('#modalAceptar').off('click'); // Limpiar eventos previos
                 $('#modalAceptar').on('click', function () {
                     $('#modalMensaje').modal('hide'); // Cerrar el modal
