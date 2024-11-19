@@ -1,0 +1,73 @@
+body {
+    margin: 0%;
+    padding: 0%;
+    background: rgb(9, 9, 121);
+    background: linear-gradient(313deg,
+        rgba(9, 9, 121, 1) 34%,
+        rgba(42, 250, 209, 1) 100%);
+  }
+
+  .container {
+    width: 900px;
+    font-size: small;
+    margin-top: 80px;
+
+    padding: 20px;
+    height: 100vh;
+  }
+
+  h2,
+  h3,h4,h6 {
+    color: white;
+  }
+  .tecnologias {
+    display: flex;
+  }
+  .gps {
+   
+   
+    margin-top: 10;
+    font-size: medium;
+
+  }
+  .conf2 {
+  
+ 
+    margin-top: 10;
+    font-size: medium;
+  
+  }
+
+  .gps .form-check {
+    margin-left: 10px;
+  }
+
+  .form-check {
+    margin-left: 10px;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+  }
+  .whatsapp-button {
+      /* Estilos del botón */
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25d366;
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      text-align: center;
+    
+      line-height: 77px; 
+      z-index: 999;
+      /* Asegúrate de que el icono sea visible */
+      display: inline-block;
+      visibility: visible;
+      opacity: 1;
+    }
+    .fa-whatsapp {
+  font-size: 40px; /* Ajusta el valor según tus necesidades */
