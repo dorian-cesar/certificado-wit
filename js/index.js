@@ -34,11 +34,8 @@ $("#consultaForm").submit(function (event) {
       // Si la diferencia es mayor a 3 día, mostrar alerta y no mostrar datos
       if (diasDiferencia > 3) {
         var message2 =
-          "El vehículo está fuera de línea. Sin reportar hace " +
-          diasDiferencia +
-          " dias " +
-          datosVehiculo.last_update +
-          ". Comuniquese con nuestra área de soporte, para verificar el estado de operatividad del dispositivo";
+          `El vehículo está fuera de línea. Sin reportar hace ${diasDiferencia} dias ${datosVehiculo.last_update} 
+          Comuniquese <a href="mailto:soporte@wit.la?subject=Consulta%20Certificado" target="_blank">con nuestra área de soporte</a>, para verificar el estado de operatividad del dispositivo`;
         mostrarModal(message2, function () {
           console.log("Otro mensaje aceptado.");
         });

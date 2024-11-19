@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $mail->isHTML(true);
         $mail->Subject = 'Certficado MasGPS by Wit.la';
-        $mail->Body    = 'Adjunto encontrarás el archivo PDF.';
+        $mail->Body    = 'Adjunto Certificado en  formato pdf.';
 
         // Adjuntar PDF
         $mail->addAttachment($pdfFilePath, 'documento.pdf');
