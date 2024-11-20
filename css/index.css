@@ -1,0 +1,33 @@
+body {
+    background-color: #ffffff;
+    color: #000000;
+    height: 100vh;
+}
+.btn-black {
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+}
+.btn-black:hover {
+    background-color: #333333;
+    color: #ffffff;
+}
+footer {
+
+    background-color: #f8f9fa;
+    padding: 10px 0;
+    text-align: center;
+    color: #000000;
+}
+.logo-placeholder {
+    width: 150px;
+    height: 150px;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #000000;
+}
