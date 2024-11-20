@@ -1,90 +1,79 @@
-$("#alert").load("alerta.html");
-// Función para calcular la diferencia en días entre dos fechas
-function calcularDiferenciaDias(fechaInicio, fechaFin) {
-  const unDia = 24 * 60 * 60 * 1000; // Milisegundos en un día
-  return Math.floor((fechaFin - fechaInicio) / unDia);
-}
-// Manejar el evento de envío del formulario
-$("#consultaForm").submit(function (event) {
-  event.preventDefault();
+$(document).ready(function () {
+  const API_URL = "https://masgps-bi.wit.la/certificado-wit/server/getData.php";
+  const ALERT_EMAIL = "mailto:soporte@wit.la?subject=Consulta%20Certificado";
+  const DIAS_LIMITE = 3;
 
-  const patente = $("#patente").val();
+  // Cargar contenido inicial
+  $("#alert").load("alerta.html");
 
-  // Realizar la solicitud POST a la API
-  //https://masgps-bi.wit.la
-  //http://localhost/
-  axios
-    .post("https://masgps-bi.wit.la/certificado-wit/server/getData.php", {
-      patente: patente,
-    })
-    .then((response) => {
-      // Mostrar los datos en la tabla
+  // Calcular diferencia en días entre dos fechas
+  function calcularDiferenciaDias(fechaInicio, fechaFin) {
+    const MS_POR_DIA = 24 * 60 * 60 * 1000; // Milisegundos en un día
+    return Math.floor((fechaFin - fechaInicio) / MS_POR_DIA);
+  }
 
-      const datosVehiculo = response.data;
-      // Convertir la fecha de last_update a un objeto Date
-      const fechaLastUpdate = new Date(datosVehiculo.last_update);
-      const fechaActual = new Date();
+  // Mostrar modal con mensaje personalizado
+  function mostrarModalConAccion(mensaje, accion) {
+    mostrarModal(mensaje, accion || function () {});
+  }
 
-      // Calcular la diferencia en días
-      const diasDiferencia = calcularDiferenciaDias(
-        fechaLastUpdate,
-        fechaActual
-      );
-      console.log("dias=" + diasDiferencia);
-      // Si la diferencia es mayor a 3 día, mostrar alerta y no mostrar datos
-      if (diasDiferencia > 3) {
-        var message2 =
-          `El vehículo está fuera de línea. Sin reportar hace ${diasDiferencia} días ${datosVehiculo.last_update} 
-          Comuníquese con nuestra  <a href="mailto:soporte@wit.la?subject=Consulta%20Certificado" target="_blank">área de soporte</a>, para verificar el estado de operatividad del dispositivo`;
-        mostrarModal(message2, function () {
-          console.log("Otro mensaje aceptado.");
-        });
+  // Actualizar tabla con los datos del vehículo
+  function actualizarTabla(datos) {
+    const tbody = $("#vehiculoDatos");
+    tbody.empty().append(`
+      <tr>
+        <td>${datos.patente}</td>
+        <td>${datos.last_update}</td>
+        <td>${datos.imei}</td>
+        <td>${datos.Razon_Social}</td>
+      </tr>
+    `);
+    $("#resultado").removeClass("d-none");
+  }
 
-        $("#resultado").addClass("d-none");
-        return;
-      }
-      // Recolecta los valores de los checkboxes
-      let selectedFeatures = [];
-      $('input[name="features"]:checked').each(function () {
-        selectedFeatures.push($(this).val());
+  // Manejar envío del formulario
+  $("#consultaForm").submit(function (event) {
+    event.preventDefault();
+
+    const patente = $("#patente").val();
+
+    axios
+      .post(API_URL, { patente })
+      .then((response) => {
+        const datosVehiculo = response.data;
+        const fechaLastUpdate = new Date(datosVehiculo.last_update);
+        const fechaActual = new Date();
+        const diasDiferencia = calcularDiferenciaDias(fechaLastUpdate, fechaActual);
+
+        if (diasDiferencia > DIAS_LIMITE) {
+          const mensaje = `
+            El vehículo está fuera de línea. Sin reportar hace ${diasDiferencia} días (${datosVehiculo.last_update}).
+            Comuníquese con nuestra <a href="${ALERT_EMAIL}" target="_blank">área de soporte</a> para verificar el estado de operatividad del dispositivo.
+          `;
+          mostrarModalConAccion(mensaje);
+          $("#resultado").addClass("d-none");
+          return;
+        }
+
+        // Guardar datos seleccionados y en localStorage
+        const selectedFeatures = $('input[name="features"]:checked').map((_, el) => $(el).val()).get();
+        localStorage.setItem("featuresSelected", JSON.stringify(selectedFeatures));
+        localStorage.setItem("vehiculoDatos", JSON.stringify(datosVehiculo));
+
+        // Actualizar tabla con datos del vehículo
+        actualizarTabla(datosVehiculo);
+      })
+      .catch((error) => {
+        console.error("Error al consultar el vehículo:", error);
+        alert("No se encontraron datos para la patente ingresada o ocurrió un error.");
       });
+  });
 
-      // Guarda los valores seleccionados en localStorage
-      localStorage.setItem(
-        "featuresSelected",
-        JSON.stringify(selectedFeatures)
-      );
-      // Llenar la tabla con los datos obtenidos
-      const tbody = $("#vehiculoDatos");
-      tbody.empty();
-      tbody.append(`
-            <tr>
-                <td>${datosVehiculo.patente}</td>
-                <td>${datosVehiculo.last_update}</td>
-                <td>${datosVehiculo.imei}</td>
-                <td>${datosVehiculo.Razon_Social}</td>
-            
-            </tr>
-            
-        `);
-
-      // Mostrar la sección de resultados
-      $("#resultado").removeClass("d-none");
-
-      // Guardar los datos en localStorage
-      localStorage.setItem("vehiculoDatos", JSON.stringify(datosVehiculo));
-    })
-    .catch((error) => {
-      console.error("Error al consultar el vehículo:", error);
-      alert(
-        "No se encontraron datos para la patente ingresada o ocurrió un error."
-      );
+  // Descargar certificado
+  $("#descargarCertificado").click(function () {
+    const mensaje = "Tu certificado se ha generado con éxito. Recuerda que tiene una vigencia de 1 año.";
+    mostrarModalConAccion(mensaje, function () {
+      window.open("hoja.html", "_blank");
     });
-});
-$("#descargarCertificado").click(function () {
-  var message =
-    "Tu certificado se ha generado con éxito. Recuerda que tiene una vigencia de 1 año.";
-  mostrarModal(message, function () {
-    window.open("hoja.html", "_blank"); // Acción personalizada
   });
 });
