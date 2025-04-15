@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  const API_URL = "https://masgps-bi.wit.la/certificado-wit/server/getData.php";
+  const API_URL = "https://masgps-bi.dev-wit.com/certificado-wit/server/getData.php";
   const ALERT_EMAIL = "mailto:soporte@wit.la?subject=Consulta%20Certificado";
   const DIAS_LIMITE = 3;
 

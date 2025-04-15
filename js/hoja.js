@@ -19,7 +19,7 @@ $(document).ready(() => {
   // Enviar datos al servidor y obtener el folio
   axios
     .post(
-      "https://masgps-bi.wit.la/certificado-wit/server/escribirFolio.php",
+      "https://masgps-bi.dev-wit.com/certificado-wit/server/escribirFolio.php",
       datos
     )
     .then((response) => {
@@ -121,7 +121,7 @@ $("#btnEnviarCorreo").click(() => {
     .toPdf()
     .output("datauristring")
     .then((pdfBase64) => {
-      $.post("https://masgps-bi.wit.la/certificado-wit/server/send_mail.php", {
+      $.post("https://masgps-bi.dev-wit.com/certificado-wit/server/send_mail.php", {
         pdfBase64,
         email,
       })
